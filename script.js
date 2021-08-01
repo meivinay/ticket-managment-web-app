@@ -47,18 +47,18 @@ addBtn.addEventListener("click", (e) => {
             let txt = e.currentTarget.innerText;
             let ticket = document.createElement("div");
             ticket.classList.add("ticket-Container") //Create ticket when press Enter
-            ticket.innerHTML = ` <div class="ticket-color ${ticketPriorityColor}" ></div>   
+            ticket.innerHTML = ` <div class="ticket-color"></div>   
             <div class="ticket-id">#shd</div>
             <div class="ticket-text">${txt} </div>`
             let ticketColor = ticket.querySelector(".ticket-color"); // selecting newly added ticket's  color div
-            ticketColor.style.background = ticketPriorityColor; //adding selected tickedpriority color to newly added ticket's color div background
-            footer.append(ticket); // append newly created ticket
+            ticketColor.style.backgroundColor = ticketPriorityColor; //adding selected tickedpriority color to newly added ticket's color div background
+            // append newly created ticket
+            footer.append(ticket); 
             modal.remove();
-            //let ticketColor = document.querySelector(".ticket-color");
-            //changing ticket color when clicked on it
+            
+            //changing ticket color after its ticket is created when clicked on it
             ticketColor.addEventListener("click",e=>{
-                let currColor = e.currentTarget.classList[1];
-                
+                let currColor = e.currentTarget.style.backgroundColor;
                 let index=-1;
                 for(let i = 0; i<colors.length;i++){
                     if(colors[i] == currColor){
@@ -68,10 +68,9 @@ addBtn.addEventListener("click", (e) => {
                 index++;
                 index = index % 4;
                 let newColor = colors[index];
-                console.log(newColor);
-                e.currentTarget.classList.remove(currColor);
-                e.currentTarget.classList.add(newColor);
-                console.log(e.currentTarget.classList);
+               console.log(newColor);
+                e.currentTarget.style.backgroundColor = newColor;
+               
             })
         }
     })
